@@ -21,7 +21,4 @@
 *.tar.gz
 *.rar
 
-nbproject
 .vscode
-build.xml
-manifest.mf

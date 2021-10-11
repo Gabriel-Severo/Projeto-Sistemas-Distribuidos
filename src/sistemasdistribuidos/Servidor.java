@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+
 public class Servidor {
     public static List<Questao> buscarQuestoes() {
         List<Questao> questoes = new ArrayList<>();
