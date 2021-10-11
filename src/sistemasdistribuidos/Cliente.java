@@ -14,6 +14,9 @@ public class Cliente {
             System.out.print("Digite a matricula: ");
             try{
                 matricula = scanner.nextLong();
+                if(matricula <= 0) {
+                    System.out.println("A matrícula informada é inválida.");
+                }
             }catch(InputMismatchException e) {
                 System.out.println("A matrícula informada é inválida.");
                 scanner.nextLine();

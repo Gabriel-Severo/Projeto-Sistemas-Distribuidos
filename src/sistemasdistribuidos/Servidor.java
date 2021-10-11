@@ -24,12 +24,21 @@ public class Servidor {
 
         Questao questao2 = new Questao();
         questao2.setDescricao("Descricao2");
-        questao2.addAlternativa("1) AASD");
-        questao2.addAlternativa("2) BBSD");
-        questao2.addAlternativa("3) CCSD");
-        questao2.addAlternativa("4) DDSD");
+        questao2.addAlternativa("1) A");
+        questao2.addAlternativa("2) B");
+        questao2.addAlternativa("3) C");
+        questao2.addAlternativa("4) D");
         questao2.setAlternativaCorreta(1);
         questoes.add(questao2);
+
+        Questao questao3 = new Questao();
+        questao3.setDescricao("Descricaoasdasd");
+        questao3.addAlternativa("1) AA");
+        questao3.addAlternativa("2) BB");
+        questao3.addAlternativa("3) CC");
+        questao3.addAlternativa("4) DD");
+        questao3.setAlternativaCorreta(1);
+        questoes.add(questao3);
 
         return questoes;
     }
@@ -67,12 +76,17 @@ public class Servidor {
                     socket = servidor.accept();
                     ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
                     Usuario usuario = (Usuario) entrada.readObject();
-                    System.out.println(usuario.getMatricula());
+                    System.out.println("Estudante com matricula " + usuario.getMatricula() + " tentando conectar");
                     if(Objects.nonNull(usuario)) {
-                        Usuario credenciais = usuarios.get(usuario.getMatricula());
-                        if(Objects.nonNull(credenciais) && credenciais.getSenha().equals(usuario.getSenha())) {
+                        Usuario usuarioInformacoes = usuarios.get(usuario.getMatricula());
+                        if(Objects.nonNull(usuarioInformacoes) && usuarioInformacoes.getSenha().equals(usuario.getSenha())) {
+                            System.out.println("Estudante " + usuarioInformacoes.getNome() + " conectado");
                             usuarioAutenticado = true;
+                        }else{
+                            System.out.println("Falha ao tentar conectar");
                         }
+                    }else{
+                        System.out.println("Falha ao tentar conectar");
                     }
                     entrada.close();
                     socket.close();
@@ -122,6 +136,7 @@ public class Servidor {
                 saida.close();
                 socket.close();
 
+                System.out.println("Estudante desconectado");
                 usuarioAutenticado = false;
             }
         } catch(Exception e) {
