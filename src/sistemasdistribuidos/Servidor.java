@@ -34,15 +34,19 @@ public class Servidor {
         return questoes;
     }
 
+    public static HashMap<Long, Usuario> buscarUsuarios() {
+        HashMap<Long, Usuario> usuarios = new HashMap<>();
+        Usuario usuario1 = new Usuario(1L, "123", "Maria");
+        Usuario usuario2 = new Usuario(2L, "1234", "João");
+
+        usuarios.put(usuario1.getMatricula(), usuario1);
+        usuarios.put(usuario2.getMatricula(), usuario2);
+        return usuarios;
+    }
+
     public static void main(String[] args) {
         Boolean usuarioAutenticado = false;
-        HashMap<Long, Usuario> usuarios = new HashMap<>();
-        Usuario usuario1 = new Usuario(123L, "123");
-        Usuario usuario2 = new Usuario(123L, "123");
-
-        usuarios.put(123L, usuario1);
-        usuarios.put(usuario2.getMatricula(), usuario2);
-
+        HashMap<Long, Usuario> usuarios = buscarUsuarios();
         List<Questao> questoes = buscarQuestoes();
 
         try {
@@ -61,13 +65,12 @@ public class Servidor {
                 
                 while(!usuarioAutenticado) {
                     socket = servidor.accept();
-                    System.out.println("Estudante conectado: " + socket.getInetAddress().getHostAddress());
                     ObjectInputStream entrada = new ObjectInputStream(socket.getInputStream());
                     Usuario usuario = (Usuario) entrada.readObject();
                     System.out.println(usuario.getMatricula());
                     if(Objects.nonNull(usuario)) {
                         Usuario credenciais = usuarios.get(usuario.getMatricula());
-                        if(credenciais.getSenha().equals(usuario.getSenha())) {
+                        if(Objects.nonNull(credenciais) && credenciais.getSenha().equals(usuario.getSenha())) {
                             usuarioAutenticado = true;
                         }
                     }
@@ -105,7 +108,7 @@ public class Servidor {
                         quantidadeAcertos++;
 
                     socket = servidor.accept();
-                    saida = new  ObjectOutputStream(socket.getOutputStream());
+                    saida = new ObjectOutputStream(socket.getOutputStream());
                     Boolean questionarioFinalizado = (i >= questoes.size()-1);
                     saida.writeBoolean(questionarioFinalizado);
                     
@@ -113,7 +116,12 @@ public class Servidor {
                     socket.close();
                 }
 
-                System.out.println("Acertou: " + quantidadeAcertos);
+                socket = servidor.accept();
+                saida = new ObjectOutputStream(socket.getOutputStream());
+                saida.writeInt(quantidadeAcertos);
+                saida.close();
+                socket.close();
+
                 usuarioAutenticado = false;
             }
         } catch(Exception e) {
