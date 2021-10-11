@@ -14,31 +14,49 @@ public class Servidor {
         List<Questao> questoes = new ArrayList<>();
         
         Questao questao1 = new Questao();
-        questao1.setDescricao("Descricao");
-        questao1.addAlternativa("1) AASD");
-        questao1.addAlternativa("2) BBSD");
-        questao1.addAlternativa("3) CCSD");
-        questao1.addAlternativa("4) DDSD");
+        questao1.setDescricao("Questão 1 - Qual os principais objetivos de sistemas distribuidos?");
+        questao1.addAlternativa("1) Transparência e Recursos compartilhados");
+        questao1.addAlternativa("2) Execução sem falhas e Escalabidade");
+        questao1.addAlternativa("3) Transparência e Segurança");
+        questao1.addAlternativa("4) Escalabidade e Portabilidade");
         questao1.setAlternativaCorreta(1);
         questoes.add(questao1);
 
         Questao questao2 = new Questao();
-        questao2.setDescricao("Descricao2");
-        questao2.addAlternativa("1) A");
-        questao2.addAlternativa("2) B");
-        questao2.addAlternativa("3) C");
-        questao2.addAlternativa("4) D");
-        questao2.setAlternativaCorreta(1);
+        questao2.setDescricao("Questão 2 - Qual protocolo é utilizado na comunicação entre processos em sistemas distribuidos?");
+        questao2.addAlternativa("1) RPC");
+        questao2.addAlternativa("2) RMI");
+        questao2.addAlternativa("3) Soquetes");
+        questao2.addAlternativa("4) Filha de mensagem");
+        questao2.setAlternativaCorreta(3);
         questoes.add(questao2);
 
         Questao questao3 = new Questao();
-        questao3.setDescricao("Descricaoasdasd");
-        questao3.addAlternativa("1) AA");
-        questao3.addAlternativa("2) BB");
-        questao3.addAlternativa("3) CC");
-        questao3.addAlternativa("4) DD");
-        questao3.setAlternativaCorreta(1);
+        questao3.setDescricao("Questão 3 - Qual a principal diferença entre TCP e UDP?");
+        questao3.addAlternativa("1) TCP e UDP são procolos idênticos porém TCP é mais novo e por isso mais utilizado");
+        questao3.addAlternativa("2) TCP depende de uma conexão mais rápida e traz mais estabilidade para a conexão, já UDP tem mais perdas de pacote");
+        questao3.addAlternativa("3) TCP o cliente não espera a resposta do servidor se o pacote foi recebido com sucesso, já no UDP isso ocorre");
+        questao3.addAlternativa("4) TCP o cliente espera a resposta do servidor se o pacote foi recebido com sucesso, já no UDP isso não ocorre");
+        questao3.setAlternativaCorreta(4);
         questoes.add(questao3);
+
+        Questao questao4 = new Questao();
+        questao4.setDescricao("Questão 4 - Enviar um objeto usando soquete é preciso que a classe implemente um interface, que nome é dado a essa interface?");
+        questao4.addAlternativa("1) HttpRequest");
+        questao4.addAlternativa("2) Serializable");
+        questao4.addAlternativa("3) CompileObject");
+        questao4.addAlternativa("4) ObjectToString");
+        questao4.setAlternativaCorreta(2);
+        questoes.add(questao4);
+
+        Questao questao5 = new Questao();
+        questao5.setDescricao("Questão 5 - Qual a diferença entre RPC e RMI na invocação remota.");
+        questao5.addAlternativa("1) RPC consegue se comunicar com vários nós na rede, mesmo que aquela rede tenha um grande volume de requisições no momento consequentemente dando perda de pacotes, já o RMI evita isso");
+        questao5.addAlternativa("2) RPC permite que um processo chame um outro processo em um nó remoto como se fosse em um ambiente local, já o RMI desempenha o mesmo papel mas voltado para orientação a objetos");
+        questao5.addAlternativa("3) RPC e RMI são idênticos, entretanto o RMI é mais novo e por isso mais usado atualmente");
+        questao5.addAlternativa("4) RPC foi desenvolvido no começo conseguir enviar arquivos de texto com bastante segurança e alta velocidade e RMI conseguiu integrar o mesmo para os de mais processos na rede");
+        questao5.setAlternativaCorreta(2);
+        questoes.add(questao5);
 
         return questoes;
     }
