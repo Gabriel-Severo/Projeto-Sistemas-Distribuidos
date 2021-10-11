@@ -8,9 +8,11 @@ Para executar Clique com o botão direito no arquivo Servidor.java e logo em seg
 Faça o mesmo para o Cliente.java
 
 Existem dois usuários cadastrados
+
 Matricula | Senha | Nome
 
 1         |  123  | Maria
 
 2         | 1234  | João
+
 Realiza autenticação com o deles e o questionário poderá ser respondido.
